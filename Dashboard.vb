@@ -1,7 +1,7 @@
 ﻿Imports System.Runtime.CompilerServices
 Imports MySql.Data.MySqlClient
 
-Public Class Form1
+Public Class frmDashboard
     'Create connection variable/object named "MyConnection"
 
     Dim MyConnection As Common.DbConnection
@@ -24,7 +24,7 @@ Public Class Form1
     Dim row As Integer
 
 
-    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub frmDashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Specify the connection string and the query
         MyConnectionString = "server=localhost;user id=root;password=;database=boardinghouse;"
         'Note that we have already discussed SQL in our previous lecture
@@ -107,5 +107,10 @@ Public Class Form1
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Close()
+    End Sub
+
+    Private Sub BoarderMaintananceToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BoarderMaintananceToolStripMenuItem.Click
+        frmBoarderMt.Show()
+        Me.Enabled = False
     End Sub
 End Class
