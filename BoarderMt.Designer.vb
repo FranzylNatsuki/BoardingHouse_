@@ -22,6 +22,7 @@ Partial Class frmBoarderMt
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim GroupBox1 As System.Windows.Forms.GroupBox
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -48,9 +49,13 @@ Partial Class frmBoarderMt
         Me.btn_Exit = New System.Windows.Forms.Button()
         Me.btn_Clear = New System.Windows.Forms.Button()
         Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.txt_search = New System.Windows.Forms.TextBox()
+        Me.bsSearch = New System.Windows.Forms.BindingSource(Me.components)
         GroupBox1 = New System.Windows.Forms.GroupBox()
         GroupBox1.SuspendLayout()
         CType(Me.dgv_boarders, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.bsSearch, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupBox1
@@ -306,11 +311,31 @@ Partial Class frmBoarderMt
         Me.Label5.Text = "BOARDER MAINTANANCE"
         Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Cambria", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(662, 63)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(125, 19)
+        Me.Label1.TabIndex = 11
+        Me.Label1.Text = "Search by Name:"
+        '
+        'txt_search
+        '
+        Me.txt_search.Font = New System.Drawing.Font("Cambria", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txt_search.Location = New System.Drawing.Point(793, 60)
+        Me.txt_search.Name = "txt_search"
+        Me.txt_search.Size = New System.Drawing.Size(282, 26)
+        Me.txt_search.TabIndex = 12
+        '
         'frmBoarderMt
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1087, 762)
+        Me.Controls.Add(Me.txt_search)
+        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.btn_Clear)
         Me.Controls.Add(Me.btn_Exit)
@@ -326,7 +351,9 @@ Partial Class frmBoarderMt
         GroupBox1.ResumeLayout(False)
         GroupBox1.PerformLayout()
         CType(Me.dgv_boarders, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.bsSearch, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -351,4 +378,7 @@ Partial Class frmBoarderMt
     Friend WithEvents txt_firstname As TextBox
     Friend WithEvents cb_roomID As ComboBox
     Friend WithEvents txt_boarderID As TextBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents txt_search As TextBox
+    Friend WithEvents bsSearch As BindingSource
 End Class

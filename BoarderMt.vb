@@ -223,4 +223,22 @@ Public Class frmBoarderMt
         btn_update.Enabled = False
         clear()
     End Sub
+
+    Private Sub txt_search_TextChanged(sender As Object, e As EventArgs) Handles txt_search.TextChanged
+        'declare a data table that will hold the content of the borrower table
+        Dim dt As DataTable = baseDS.Tables("boarder")
+        'connect the data table as the data source of the BindingSource control (bsSearchBorrower)
+        bsSearch.DataSource = dt
+        'set the data source of the DataGridView control (dgvBorrower) to the BindingSource
+        dgv_boarders.DataSource = bsSearch
+        'filter the BindingSource with every change that happens in the textbox (TextChangedEvent)
+        Dim search As String = txt_search.Text
+
+        search = search.Replace("'", "''")
+        search = search.Replace("[", "[[]")
+        search = search.Replace("%", "[%]")
+        search = search.Replace("_", "[_]")
+
+        bsSearch.Filter = $"FirstName LIKE '{search}%' OR LastName LIKE '{search}%'"
+    End Sub
 End Class
