@@ -110,7 +110,22 @@ Public Class frmDashboard
     End Sub
 
     Private Sub BoarderMaintananceToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BoarderMaintananceToolStripMenuItem.Click
-        frmBoarderMt.Show()
-        Me.Enabled = False
+        frmBoarderMt.ShowDialog()
+        RefreshDashboard()
+    End Sub
+
+    Private Sub RoomMaintananceToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RoomMaintananceToolStripMenuItem.Click
+        frmRoomMt.ShowDialog()
+        RefreshDashboard()
+    End Sub
+
+    Sub RefreshDashboard()
+        lbl_boardercount.Text = DashboardRetrieve("SELECT COUNT(BoarderID) FROM boarder")
+        lbl_occupied.Text = DashboardRetrieve("SELECT COUNT(RoomID) FROM room WHERE Occupying > 0")
+        lbl_unoccupied.Text = DashboardRetrieve("SELECT COUNT(RoomID) FROM room WHERE Occupying = 0")
+        lbl_fc_count.Text = DashboardRetrieve("SELECT COUNT(RequestID) FROM facility_request")
+        lbl_termination.Text = DashboardRetrieve("SELECT COUNT(TerminationID) FROM rent_termination WHERE Cleared = 0")
+
+        DGVContext(commonSQLQuery, dgv_dashboard.DataMember)
     End Sub
 End Class
