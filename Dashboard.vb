@@ -163,11 +163,23 @@ Public Class frmDashboard
     End Sub
 
     Private Sub ComplaintsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ComplaintsToolStripMenuItem.Click
-
+        frmComplaints.ShowDialog()
+        RefreshDashboard()
     End Sub
 
     Private Sub ResidentLogToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ResidentLogToolStripMenuItem.Click
         frmResident_Log.ShowDialog()
         RefreshDashboard()
+    End Sub
+
+    Private Sub UtilityPaymentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UtilityPaymentToolStripMenuItem.Click
+        frmUtilityPayment.ShowDialog()
+        RefreshDashboard()
+    End Sub
+
+    Private Sub btn_upay_Click(sender As Object, e As EventArgs) Handles btn_upay.Click
+        commonSQLQuery = "SELECT * FROM utility_payment"
+        currentTable = "utility_payment"
+        DGVContext(commonSQLQuery, currentTable)
     End Sub
 End Class

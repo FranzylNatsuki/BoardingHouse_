@@ -36,7 +36,6 @@ Partial Class frmDashboard
         Me.FacilityMaintananceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ComplaintsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UtilitiesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.UtilityMaintananceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UtilityPaymentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LeaseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RentPaymentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -64,6 +63,7 @@ Partial Class frmDashboard
         Me.lbl_occupied = New System.Windows.Forms.Label()
         Me.lbl_unoccupied = New System.Windows.Forms.Label()
         Me.btn_refresh = New System.Windows.Forms.Button()
+        Me.btn_upay = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.dgv_dashboard, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -132,22 +132,16 @@ Partial Class frmDashboard
         '
         'UtilitiesToolStripMenuItem
         '
-        Me.UtilitiesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UtilityMaintananceToolStripMenuItem, Me.UtilityPaymentToolStripMenuItem})
+        Me.UtilitiesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UtilityPaymentToolStripMenuItem})
         Me.UtilitiesToolStripMenuItem.Font = New System.Drawing.Font("Cambria", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.UtilitiesToolStripMenuItem.Name = "UtilitiesToolStripMenuItem"
         Me.UtilitiesToolStripMenuItem.Size = New System.Drawing.Size(72, 23)
         Me.UtilitiesToolStripMenuItem.Text = "Utilities"
         '
-        'UtilityMaintananceToolStripMenuItem
-        '
-        Me.UtilityMaintananceToolStripMenuItem.Name = "UtilityMaintananceToolStripMenuItem"
-        Me.UtilityMaintananceToolStripMenuItem.Size = New System.Drawing.Size(210, 24)
-        Me.UtilityMaintananceToolStripMenuItem.Text = "Utility Maintanance"
-        '
         'UtilityPaymentToolStripMenuItem
         '
         Me.UtilityPaymentToolStripMenuItem.Name = "UtilityPaymentToolStripMenuItem"
-        Me.UtilityPaymentToolStripMenuItem.Size = New System.Drawing.Size(210, 24)
+        Me.UtilityPaymentToolStripMenuItem.Size = New System.Drawing.Size(182, 24)
         Me.UtilityPaymentToolStripMenuItem.Text = "Utility Payment"
         '
         'LeaseToolStripMenuItem
@@ -162,7 +156,7 @@ Partial Class frmDashboard
         '
         Me.RentPaymentToolStripMenuItem.Name = "RentPaymentToolStripMenuItem"
         Me.RentPaymentToolStripMenuItem.Size = New System.Drawing.Size(198, 24)
-        Me.RentPaymentToolStripMenuItem.Text = "Rent Payment"
+        Me.RentPaymentToolStripMenuItem.Text = "Rent Pay"
         '
         'RentTerminationToolStripMenuItem
         '
@@ -173,6 +167,7 @@ Partial Class frmDashboard
         'Panel1
         '
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel1.Controls.Add(Me.btn_upay)
         Me.Panel1.Controls.Add(Me.Button1)
         Me.Panel1.Controls.Add(Me.btn_dash_term)
         Me.Panel1.Controls.Add(Me.btn_dash_boarders)
@@ -205,7 +200,7 @@ Partial Class frmDashboard
         Me.btn_dash_term.Font = New System.Drawing.Font("Cambria", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_dash_term.Image = Global.BoardingHouse_.My.Resources.Resources.contract_termination_line_svgrepo_com
         Me.btn_dash_term.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btn_dash_term.Location = New System.Drawing.Point(12, 260)
+        Me.btn_dash_term.Location = New System.Drawing.Point(12, 309)
         Me.btn_dash_term.Name = "btn_dash_term"
         Me.btn_dash_term.Padding = New System.Windows.Forms.Padding(5, 2, 2, 2)
         Me.btn_dash_term.Size = New System.Drawing.Size(183, 43)
@@ -238,7 +233,7 @@ Partial Class frmDashboard
         Me.btn_dash_payments.Font = New System.Drawing.Font("Cambria", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_dash_payments.Image = Global.BoardingHouse_.My.Resources.Resources.money_dollar_svgrepo_com
         Me.btn_dash_payments.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btn_dash_payments.Location = New System.Drawing.Point(12, 211)
+        Me.btn_dash_payments.Location = New System.Drawing.Point(12, 260)
         Me.btn_dash_payments.Name = "btn_dash_payments"
         Me.btn_dash_payments.Padding = New System.Windows.Forms.Padding(5, 2, 2, 2)
         Me.btn_dash_payments.Size = New System.Drawing.Size(183, 43)
@@ -471,6 +466,22 @@ Partial Class frmDashboard
         Me.btn_refresh.Text = "Refresh"
         Me.btn_refresh.UseVisualStyleBackColor = True
         '
+        'btn_upay
+        '
+        Me.btn_upay.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.btn_upay.Font = New System.Drawing.Font("Cambria", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_upay.Image = Global.BoardingHouse_.My.Resources.Resources.electricity_svgrepo_com
+        Me.btn_upay.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btn_upay.Location = New System.Drawing.Point(12, 211)
+        Me.btn_upay.Name = "btn_upay"
+        Me.btn_upay.Padding = New System.Windows.Forms.Padding(5, 2, 2, 2)
+        Me.btn_upay.Size = New System.Drawing.Size(183, 43)
+        Me.btn_upay.TabIndex = 10
+        Me.btn_upay.Text = "Utility Payments"
+        Me.btn_upay.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btn_upay.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btn_upay.UseVisualStyleBackColor = False
+        '
         'frmDashboard
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -516,11 +527,9 @@ Partial Class frmDashboard
     Friend WithEvents FacilityMaintananceToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ComplaintsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents UtilitiesToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents UtilityMaintananceToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents UtilityPaymentToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents LeaseToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents RentPaymentToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents RentTerminationToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents Panel1 As Panel
     Friend WithEvents btn_dash_payments As Button
     Friend WithEvents btn_dash_utilities As Button
@@ -545,4 +554,6 @@ Partial Class frmDashboard
     Friend WithEvents Button1 As Button
     Friend WithEvents btn_refresh As Button
     Friend WithEvents ResidentLogToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents RentTerminationToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents btn_upay As Button
 End Class
