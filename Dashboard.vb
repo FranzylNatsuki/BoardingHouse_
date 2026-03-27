@@ -165,4 +165,9 @@ Public Class frmDashboard
     Private Sub ComplaintsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ComplaintsToolStripMenuItem.Click
 
     End Sub
+
+    Private Sub ResidentLogToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ResidentLogToolStripMenuItem.Click
+        frmResident_Log.ShowDialog()
+        RefreshDashboard()
+    End Sub
 End Class

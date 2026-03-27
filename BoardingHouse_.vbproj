@@ -77,6 +77,10 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Complaints.Designer.vb">
+      <DependentUpon>Complaints.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Complaints.vb" />
     <Compile Include="Dashboard.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +116,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Resident Log.Designer.vb">
+      <DependentUpon>Resident Log.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Resident Log.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="RoomMt.Designer.vb">
       <DependentUpon>RoomMt.vb</DependentUpon>
     </Compile>
@@ -126,6 +136,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Complaints.resx">
+      <DependentUpon>Complaints.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dashboard.resx">
       <DependentUpon>Dashboard.vb</DependentUpon>
     </EmbeddedResource>
@@ -140,6 +153,9 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resident Log.resx">
+      <DependentUpon>Resident Log.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RoomMt.resx">
       <DependentUpon>RoomMt.vb</DependentUpon>
