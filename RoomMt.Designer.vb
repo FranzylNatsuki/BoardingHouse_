@@ -349,6 +349,7 @@ Partial Class frmRoomMt
         Me.Controls.Add(Me.dgv_rooms)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmRoomMt"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Room Maintanance"
         GroupBox1.ResumeLayout(False)
         GroupBox1.PerformLayout()

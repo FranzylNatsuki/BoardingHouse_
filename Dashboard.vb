@@ -158,7 +158,8 @@ Public Class frmDashboard
     End Sub
 
     Private Sub FacilityMaintananceToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FacilityMaintananceToolStripMenuItem.Click
-
+        frmFacilityMt.ShowDialog()
+        RefreshDashboard()
     End Sub
 
     Private Sub ComplaintsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ComplaintsToolStripMenuItem.Click

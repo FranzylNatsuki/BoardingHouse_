@@ -90,6 +90,12 @@
     <Compile Include="BoarderMt.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FacilityMt.Designer.vb">
+      <DependentUpon>FacilityMt.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FacilityMt.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -125,6 +131,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BoarderMt.resx">
       <DependentUpon>BoarderMt.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacilityMt.resx">
+      <DependentUpon>FacilityMt.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
