@@ -22,6 +22,7 @@ Public Class frmDashboard
     Dim commonSQLQuery As String
     'We will use this later in the update and delete modules
     Dim row As Integer
+    Dim currentTable As String
 
 
     Private Sub frmDashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -38,7 +39,8 @@ Public Class frmDashboard
         lbl_termination.Text = DashboardRetrieve("SELECT COUNT(TerminationID) FROM rent_termination WHERE Cleared = 0")
 
         commonSQLQuery = "SELECT * FROM boarder ORDER BY LastName"
-        DGVContext(commonSQLQuery, "boarder")
+        currentTable = "boarder"
+        DGVContext(commonSQLQuery, currentTable)
     End Sub
 
     Function DashboardRetrieve(query As String) As String
@@ -52,24 +54,26 @@ Public Class frmDashboard
     End Function
 
     Function DGVContext(query As String, table As String)
-        baseDS.Tables.Clear()
         baseDA = New MySqlDataAdapter()
         Try
             If MyConnection.State = ConnectionState.Closed Then
                 MyConnection.Open()
             End If
 
+            Dim dt As New DataTable()
             baseDA.SelectCommand = New MySqlCommand(query, MyConnection)
-            Dim cb1 As MySqlCommandBuilder = New MySqlCommandBuilder(baseDA)
-            baseDA.Fill(baseDS, table)
-            dgv_dashboard.DataSource = baseDS
-            dgv_dashboard.DataMember = table
+
+            dt.Clear()
+            baseDA.Fill(dt)
+            dgv_dashboard.DataSource = Nothing
+            dgv_dashboard.DataSource = dt
+
             If dgv_dashboard.Columns.Contains("BillingPeriod") Then
                 dgv_dashboard.Columns("BillingPeriod").DefaultCellStyle.Format = "yyyy-MM"
             End If
             dgv_dashboard.AutoResizeColumns()
-        Catch ex As Common.DbException
-            MsgBox(ex.ToString)
+        Catch ex As Exception
+            MsgBox(ex.Message)
         Finally
             MyConnection.Close()
         End Try
@@ -77,32 +81,38 @@ Public Class frmDashboard
 
     Private Sub btn_dash_boarders_Click(sender As Object, e As EventArgs) Handles btn_dash_boarders.Click
         commonSQLQuery = "SELECT * FROM boarder ORDER BY LastName"
-        DGVContext(commonSQLQuery, "boarder")
+        currentTable = "boarder"
+        DGVContext(commonSQLQuery, currentTable)
     End Sub
 
     Private Sub btn_dash_rooms_Click(sender As Object, e As EventArgs) Handles btn_dash_rooms.Click
         commonSQLQuery = "SELECT * FROM room ORDER BY RoomID"
-        DGVContext(commonSQLQuery, "room")
+        currentTable = "room"
+        DGVContext(commonSQLQuery, currentTable)
     End Sub
 
     Private Sub btn_dash_fc_Click(sender As Object, e As EventArgs) Handles btn_dash_fc.Click
         commonSQLQuery = "SELECT * FROM facility_request ORDER BY RequestID"
-        DGVContext(commonSQLQuery, "facility_request")
+        currentTable = "facility_request"
+        DGVContext(commonSQLQuery, currentTable)
     End Sub
 
     Private Sub btn_dash_utilities_Click(sender As Object, e As EventArgs) Handles btn_dash_utilities.Click
         commonSQLQuery = "SELECT * FROM utility ORDER BY UtilityID"
-        DGVContext(commonSQLQuery, "utility")
+        currentTable = "utility"
+        DGVContext(commonSQLQuery, currentTable)
     End Sub
 
     Private Sub btn_dash_payments_Click(sender As Object, e As EventArgs) Handles btn_dash_payments.Click
         commonSQLQuery = "SELECT * FROM rental_payment ORDER BY TransactionID"
-        DGVContext(commonSQLQuery, "rental_payment")
+        currentTable = "rental_payment"
+        DGVContext(commonSQLQuery, currentTable)
     End Sub
 
     Private Sub btn_dash_term_Click(sender As Object, e As EventArgs) Handles btn_dash_term.Click
         commonSQLQuery = "SELECT * FROM rent_termination ORDER BY TerminationID"
-        DGVContext(commonSQLQuery, "rent_termination")
+        currentTable = "rent_termination"
+        DGVContext(commonSQLQuery, currentTable)
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -120,12 +130,38 @@ Public Class frmDashboard
     End Sub
 
     Sub RefreshDashboard()
+        If MyConnection.State = ConnectionState.Open Then
+            MyConnection.Close()
+        End If
+        MyConnection.Open()
+
         lbl_boardercount.Text = DashboardRetrieve("SELECT COUNT(BoarderID) FROM boarder")
         lbl_occupied.Text = DashboardRetrieve("SELECT COUNT(RoomID) FROM room WHERE Occupying > 0")
         lbl_unoccupied.Text = DashboardRetrieve("SELECT COUNT(RoomID) FROM room WHERE Occupying = 0")
         lbl_fc_count.Text = DashboardRetrieve("SELECT COUNT(RequestID) FROM facility_request")
         lbl_termination.Text = DashboardRetrieve("SELECT COUNT(TerminationID) FROM rent_termination WHERE Cleared = 0")
 
-        DGVContext(commonSQLQuery, dgv_dashboard.DataMember)
+        baseDS.Clear()
+        dgv_dashboard.DataSource = Nothing
+        DGVContext(commonSQLQuery, currentTable)
+
+    End Sub
+
+    Private Sub UtilityManagementToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UtilityManagementToolStripMenuItem.Click
+        frmUtilityMt.ShowDialog()
+        RefreshDashboard()
+    End Sub
+
+    Private Sub btn_Refresh_Click(sender As Object, e As EventArgs) Handles btn_refresh.Click
+        RefreshDashboard()
+        'MessageBox.Show("Dashboard refreshed!", "Refresh", MessageBoxButtons.OK, MessageBoxIcon.Information)
+    End Sub
+
+    Private Sub FacilityMaintananceToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FacilityMaintananceToolStripMenuItem.Click
+
+    End Sub
+
+    Private Sub ComplaintsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ComplaintsToolStripMenuItem.Click
+
     End Sub
 End Class

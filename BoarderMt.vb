@@ -221,6 +221,7 @@ Public Class frmBoarderMt
         btn_add.Enabled = True
         btn_delete.Enabled = False
         btn_update.Enabled = False
+        txt_boarderID.Enabled = True
         clear()
     End Sub
 

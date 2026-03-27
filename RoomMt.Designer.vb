@@ -349,7 +349,7 @@ Partial Class frmRoomMt
         Me.Controls.Add(Me.dgv_rooms)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmRoomMt"
-        Me.Text = "RoomMt"
+        Me.Text = "Room Maintanance"
         GroupBox1.ResumeLayout(False)
         GroupBox1.PerformLayout()
         CType(Me.dgv_rooms, System.ComponentModel.ISupportInitialize).EndInit()
