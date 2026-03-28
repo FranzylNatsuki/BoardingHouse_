@@ -23,14 +23,13 @@ Partial Class frmDashboard
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmDashboard))
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.BoarderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BoarderMaintananceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RoomMaintananceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.UtilityManagementToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ResidentLogToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FacilityToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FacilityMaintananceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -64,6 +63,7 @@ Partial Class frmDashboard
         Me.lbl_occupied = New System.Windows.Forms.Label()
         Me.lbl_unoccupied = New System.Windows.Forms.Label()
         Me.btn_refresh = New System.Windows.Forms.Button()
+        Me.UtilityPaymentToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.dgv_dashboard, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -80,7 +80,7 @@ Partial Class frmDashboard
         '
         'BoarderToolStripMenuItem
         '
-        Me.BoarderToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BoarderMaintananceToolStripMenuItem, Me.RoomMaintananceToolStripMenuItem, Me.UtilityManagementToolStripMenuItem, Me.ResidentLogToolStripMenuItem})
+        Me.BoarderToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BoarderMaintananceToolStripMenuItem, Me.RoomMaintananceToolStripMenuItem, Me.ResidentLogToolStripMenuItem})
         Me.BoarderToolStripMenuItem.Font = New System.Drawing.Font("Cambria", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BoarderToolStripMenuItem.Name = "BoarderToolStripMenuItem"
         Me.BoarderToolStripMenuItem.Size = New System.Drawing.Size(53, 23)
@@ -97,12 +97,6 @@ Partial Class frmDashboard
         Me.RoomMaintananceToolStripMenuItem.Name = "RoomMaintananceToolStripMenuItem"
         Me.RoomMaintananceToolStripMenuItem.Size = New System.Drawing.Size(228, 24)
         Me.RoomMaintananceToolStripMenuItem.Text = "Room Maintanance"
-        '
-        'UtilityManagementToolStripMenuItem
-        '
-        Me.UtilityManagementToolStripMenuItem.Name = "UtilityManagementToolStripMenuItem"
-        Me.UtilityManagementToolStripMenuItem.Size = New System.Drawing.Size(228, 24)
-        Me.UtilityManagementToolStripMenuItem.Text = "Utility Management"
         '
         'ResidentLogToolStripMenuItem
         '
@@ -132,7 +126,7 @@ Partial Class frmDashboard
         '
         'UtilitiesToolStripMenuItem
         '
-        Me.UtilitiesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UtilityPaymentToolStripMenuItem})
+        Me.UtilitiesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UtilityPaymentToolStripMenuItem, Me.UtilityPaymentToolStripMenuItem1})
         Me.UtilitiesToolStripMenuItem.Font = New System.Drawing.Font("Cambria", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.UtilitiesToolStripMenuItem.Name = "UtilitiesToolStripMenuItem"
         Me.UtilitiesToolStripMenuItem.Size = New System.Drawing.Size(72, 23)
@@ -141,8 +135,8 @@ Partial Class frmDashboard
         'UtilityPaymentToolStripMenuItem
         '
         Me.UtilityPaymentToolStripMenuItem.Name = "UtilityPaymentToolStripMenuItem"
-        Me.UtilityPaymentToolStripMenuItem.Size = New System.Drawing.Size(182, 24)
-        Me.UtilityPaymentToolStripMenuItem.Text = "Utility Payment"
+        Me.UtilityPaymentToolStripMenuItem.Size = New System.Drawing.Size(210, 24)
+        Me.UtilityPaymentToolStripMenuItem.Text = "Utility Maintanance"
         '
         'LeaseToolStripMenuItem
         '
@@ -310,33 +304,33 @@ Partial Class frmDashboard
         'dgv_dashboard
         '
         Me.dgv_dashboard.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Cambria", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgv_dashboard.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle7.Font = New System.Drawing.Font("Cambria", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgv_dashboard.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle7
         Me.dgv_dashboard.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Cambria", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgv_dashboard.DefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle8.Font = New System.Drawing.Font("Cambria", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgv_dashboard.DefaultCellStyle = DataGridViewCellStyle8
         Me.dgv_dashboard.Location = New System.Drawing.Point(254, 265)
         Me.dgv_dashboard.Name = "dgv_dashboard"
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Cambria", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgv_dashboard.RowHeadersDefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle9.Font = New System.Drawing.Font("Cambria", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgv_dashboard.RowHeadersDefaultCellStyle = DataGridViewCellStyle9
         Me.dgv_dashboard.Size = New System.Drawing.Size(969, 446)
         Me.dgv_dashboard.TabIndex = 2
         '
@@ -482,6 +476,12 @@ Partial Class frmDashboard
         Me.btn_refresh.Text = "Refresh"
         Me.btn_refresh.UseVisualStyleBackColor = True
         '
+        'UtilityPaymentToolStripMenuItem1
+        '
+        Me.UtilityPaymentToolStripMenuItem1.Name = "UtilityPaymentToolStripMenuItem1"
+        Me.UtilityPaymentToolStripMenuItem1.Size = New System.Drawing.Size(210, 24)
+        Me.UtilityPaymentToolStripMenuItem1.Text = "Utility Payment"
+        '
         'frmDashboard
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -522,7 +522,6 @@ Partial Class frmDashboard
     Friend WithEvents BoarderToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents BoarderMaintananceToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents RoomMaintananceToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents UtilityManagementToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents FacilityToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents FacilityMaintananceToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ComplaintsToolStripMenuItem As ToolStripMenuItem
@@ -556,4 +555,5 @@ Partial Class frmDashboard
     Friend WithEvents ResidentLogToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents RentTerminationToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents btn_upay As Button
+    Friend WithEvents UtilityPaymentToolStripMenuItem1 As ToolStripMenuItem
 End Class

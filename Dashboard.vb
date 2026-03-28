@@ -147,7 +147,7 @@ Public Class frmDashboard
 
     End Sub
 
-    Private Sub UtilityManagementToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UtilityManagementToolStripMenuItem.Click
+    Private Sub UtilityManagementToolStripMenuItem_Click(sender As Object, e As EventArgs)
         frmUtilityMt.ShowDialog()
         RefreshDashboard()
     End Sub
@@ -173,7 +173,7 @@ Public Class frmDashboard
     End Sub
 
     Private Sub UtilityPaymentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UtilityPaymentToolStripMenuItem.Click
-        frmUtilityPayment.ShowDialog()
+        frmUtilityMt.ShowDialog()
         RefreshDashboard()
     End Sub
 
@@ -190,6 +190,11 @@ Public Class frmDashboard
 
     Private Sub RentTerminationToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RentTerminationToolStripMenuItem.Click
         frmTermination.ShowDialog()
+        RefreshDashboard()
+    End Sub
+
+    Private Sub UtilityPaymentToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles UtilityPaymentToolStripMenuItem1.Click
+        frmUtilityPayment.ShowDialog()
         RefreshDashboard()
     End Sub
 End Class
