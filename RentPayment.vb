@@ -203,8 +203,6 @@ Public Class frmRentPayment
         txt_rpBoarder.Text = dgv_boarder.CurrentRow.Cells(0).Value.ToString
         'the row number/index of the tuple is taken note of (to be used when updating or deleting that tuple)
         row = dgv_boarder.CurrentRow.Index
-        btn_delete.Enabled = False
-        btn_update.Enabled = False
         txt_rpBoarder.Enabled = False
     End Sub
 
@@ -212,8 +210,7 @@ Public Class frmRentPayment
         'transfer the content of the row that was clicked on the datagridview control to the textboxes
         txt_transID.Text = dgv_rentPay.CurrentRow.Cells(0).Value.ToString
         txt_amountrent.Text = dgv_rentPay.CurrentRow.Cells(1).Value.ToString
-        Dim billingPeriod As TimeSpan = TimeSpan.Parse(dgv_rentPay.CurrentRow.Cells(2).Value.ToString())
-        dtp_billingPeriod.Value = DateTime.Today.Add(billingPeriod)
+        dtp_billingPeriod.Value = Convert.ToDateTime(dgv_rentPay.CurrentRow.Cells(2).Value)
         txt_receiptNo.Text = dgv_rentPay.CurrentRow.Cells(3).Value.ToString
         cb_payMethod.SelectedItem = dgv_rentPay.CurrentRow.Cells(4).Value.ToString
         cal_paymentDate.SetDate(Convert.ToDateTime(dgv_rentPay.CurrentRow.Cells(5).Value))

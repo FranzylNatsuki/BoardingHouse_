@@ -208,8 +208,6 @@ Public Class frmUtilityPayment
         txt_boarderID.Text = dgv_boarder.CurrentRow.Cells(0).Value.ToString
         'the row number/index of the tuple is taken note of (to be used when updating or deleting that tuple)
         row = dgv_boarder.CurrentRow.Index
-        btn_delete.Enabled = False
-        btn_update.Enabled = False
         txt_boarderID.Enabled = False
     End Sub
 
@@ -217,8 +215,6 @@ Public Class frmUtilityPayment
         txt_utilityID.Text = dgv_utility.CurrentRow.Cells(0).Value.ToString
         'the row number/index of the tuple is taken note of (to be used when updating or deleting that tuple)
         row = dgv_utility.CurrentRow.Index
-        btn_delete.Enabled = False
-        btn_update.Enabled = False
         txt_utilityID.Enabled = False
     End Sub
 

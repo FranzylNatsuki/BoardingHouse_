@@ -201,8 +201,6 @@ Public Class frmTermination
         txt_rtBoarder.Text = dgv_boarder.CurrentRow.Cells(0).Value.ToString
         'the row number/index of the tuple is taken note of (to be used when updating or deleting that tuple)
         row = dgv_boarder.CurrentRow.Index
-        btn_delete.Enabled = False
-        btn_update.Enabled = False
         txt_rtBoarder.Enabled = False
     End Sub
 
