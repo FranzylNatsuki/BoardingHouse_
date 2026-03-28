@@ -77,6 +77,28 @@ Public Class frmRoomMt
         End Try
     End Sub
 
+    Function GetOccupying(roomID As String) As Integer
+        Dim count As Integer = 0
+
+        Try
+            If MyConnection.State = ConnectionState.Closed Then
+                MyConnection.Open()
+            End If
+
+            Dim cmd As New MySqlCommand("SELECT COUNT(BoarderID) FROM boarder WHERE RoomID = @roomID", MyConnection)
+            cmd.Parameters.AddWithValue("@roomID", roomID)
+
+            count = Convert.ToInt32(cmd.ExecuteScalar())
+
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        Finally
+            MyConnection.Close()
+        End Try
+
+        Return count
+    End Function
+
     Private Sub btn_update_Click(sender As Object, e As EventArgs) Handles btn_update.Click
         'Declare dt as a temporary holder/table for the BORROWER table
         'Take note that we used the variable borrDataTable in the “Add Records” module
@@ -169,7 +191,7 @@ Public Class frmRoomMt
         cb_roomtype.Text = dgv_rooms.CurrentRow.Cells(2).Value.ToString
         txt_rate.Text = dgv_rooms.CurrentRow.Cells(3).Value.ToString
         txt_capacity.Text = dgv_rooms.CurrentRow.Cells(4).Value.ToString
-        txt_occupying.Text = dgv_rooms.CurrentRow.Cells(5).Value.ToString
+        txt_occupying.Text = GetOccupying(txt_roomID.Text).ToString()
         'the row number/index of the tuple is taken note of (to be used when updating or deleting that tuple)
         'this was previously declared in the Public Class frmBorrower
         row = dgv_rooms.CurrentRow.Index
@@ -236,5 +258,13 @@ Public Class frmRoomMt
 
 
         bsSearch.Filter = filter
+    End Sub
+
+    Private Sub txt_roomID_TextChanged(sender As Object, e As EventArgs) Handles txt_roomID.TextChanged
+        If txt_roomID.Text <> "" Then
+            txt_occupying.Text = GetOccupying(txt_roomID.Text).ToString()
+        Else
+            txt_occupying.Clear()
+        End If
     End Sub
 End Class

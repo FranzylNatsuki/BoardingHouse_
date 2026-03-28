@@ -46,8 +46,8 @@ Public Class frmBoarderMt
             baseDA.SelectCommand = New MySqlCommand(commonSQLQuery, MyConnection)
             Dim cb1 As MySqlCommandBuilder = New MySqlCommandBuilder(baseDA)
             baseDA.Fill(baseDS, "boarder")
-            dgv_boarders.DataSource = baseDS
-            dgv_boarders.DataMember = "boarder"
+            bsSearch.DataSource = baseDS.Tables("boarder")
+            dgv_boarders.DataSource = bsSearch
             dgv_boarders.AutoResizeColumns()
         Catch ex As Common.DbException
             MsgBox(ex.ToString)
@@ -95,6 +95,27 @@ Public Class frmBoarderMt
         txt_search.Clear()
     End Sub
 
+    Sub UpdateRoomOccupancy(roomID As String)
+        Dim query As String = "SELECT COUNT(*) FROM boarder WHERE RoomID = @roomID"
+        Dim cmd As New MySqlCommand(query, MyConnection)
+        cmd.Parameters.AddWithValue("@roomID", roomID)
+
+        If MyConnection.State = ConnectionState.Closed Then
+            MyConnection.Open()
+        End If
+
+        Dim count As Integer = Convert.ToInt32(cmd.ExecuteScalar())
+
+        Dim updateQuery As String = "UPDATE room SET Occupying = @count WHERE RoomID = @roomID"
+        Dim updateCmd As New MySqlCommand(updateQuery, MyConnection)
+        updateCmd.Parameters.AddWithValue("@count", count)
+        updateCmd.Parameters.AddWithValue("@roomID", roomID)
+
+        updateCmd.ExecuteNonQuery()
+
+        MyConnection.Close()
+    End Sub
+
     Private Sub btn_add_Click(sender As Object, e As EventArgs) Handles btn_add.Click
         Dim baseDT As DataTable = baseDS.Tables("boarder")
         Dim newRow As DataRow
@@ -116,6 +137,7 @@ Public Class frmBoarderMt
             'output a pop-up message (informative) on screen
             MsgBox("The record was successfully saved.", MsgBoxStyle.Information, "Boarder Maintanance")
             'clear the textboxes and the combobox
+            UpdateRoomOccupancy(cb_roomID.Text)
             clear()
         Catch ex As MySqlException
             MsgBox(ex.ToString)
@@ -144,6 +166,7 @@ Public Class frmBoarderMt
             MsgBox("The changes in the record were successfully saved.", MsgBoxStyle.Information, "Boarder Maintanance")
             'Clear out the text boxes/combo box for new input/s
             clear()
+            UpdateRoomOccupancy(cb_roomID.Text)
             'set the cursor on the first textbox (borrower number)
             txt_boarderID.Focus()
             txt_boarderID.Enabled = True
@@ -166,6 +189,11 @@ Public Class frmBoarderMt
         answer = MsgBox("Are you sure you want to delete this record?", MsgBoxStyle.YesNo, "Boarder Maintanance")
         If (answer = MsgBoxResult.Yes) Then
             Try
+                Dim oldRoomID As String = ""
+
+                If dt.Rows(row)("RoomID") IsNot DBNull.Value Then
+                    oldRoomID = dt.Rows(row)("RoomID").ToString()
+                End If
                 'delete the record that is indicated by the "row" which was taken note of in dgvBorrower_MouseUp
                 dt.Rows(row).Delete()
                 'update the employee table with one less tuple
@@ -174,6 +202,7 @@ Public Class frmBoarderMt
                 MsgBox("The record was successfully deleted.", MsgBoxStyle.Information, "Boarder Maintanance")
                 'Blank out the text boxes/combo box for new input/s
                 clear()
+                UpdateRoomOccupancy(oldRoomID)
                 'set the cursor on the first textbox
                 txt_boarderID.Focus()
                 txt_boarderID.Enabled = True
@@ -231,7 +260,6 @@ Public Class frmBoarderMt
         'connect the data table as the data source of the BindingSource control (bsSearchBorrower)
         bsSearch.DataSource = dt
         'set the data source of the DataGridView control (dgvBorrower) to the BindingSource
-        dgv_boarders.DataSource = bsSearch
         'filter the BindingSource with every change that happens in the textbox (TextChangedEvent)
         Dim search As String = txt_search.Text
 

@@ -182,4 +182,14 @@ Public Class frmDashboard
         currentTable = "utility_payment"
         DGVContext(commonSQLQuery, currentTable)
     End Sub
+
+    Private Sub RentPaymentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RentPaymentToolStripMenuItem.Click
+        frmRentPayment.ShowDialog()
+        RefreshDashboard()
+    End Sub
+
+    Private Sub RentTerminationToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RentTerminationToolStripMenuItem.Click
+        frmTermination.ShowDialog()
+        RefreshDashboard()
+    End Sub
 End Class

@@ -91,11 +91,13 @@ Partial Class frmRoomMt
         '
         'txt_occupying
         '
+        Me.txt_occupying.Enabled = False
         Me.txt_occupying.Font = New System.Drawing.Font("Cambria", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txt_occupying.Location = New System.Drawing.Point(723, 112)
         Me.txt_occupying.Name = "txt_occupying"
         Me.txt_occupying.Size = New System.Drawing.Size(212, 26)
         Me.txt_occupying.TabIndex = 14
+        Me.txt_occupying.Text = "0"
         '
         'txt_capacity
         '

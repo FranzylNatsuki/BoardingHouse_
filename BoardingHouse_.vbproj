@@ -118,6 +118,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="RentPayment.Designer.vb">
+      <DependentUpon>RentPayment.vb</DependentUpon>
+    </Compile>
+    <Compile Include="RentPayment.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Resident Log.Designer.vb">
       <DependentUpon>Resident Log.vb</DependentUpon>
     </Compile>
@@ -128,6 +134,12 @@
       <DependentUpon>RoomMt.vb</DependentUpon>
     </Compile>
     <Compile Include="RoomMt.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Termination.Designer.vb">
+      <DependentUpon>Termination.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Termination.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UtilityMt.Designer.vb">
@@ -162,11 +174,17 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="RentPayment.resx">
+      <DependentUpon>RentPayment.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resident Log.resx">
       <DependentUpon>Resident Log.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RoomMt.resx">
       <DependentUpon>RoomMt.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Termination.resx">
+      <DependentUpon>Termination.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UtilityMt.resx">
       <DependentUpon>UtilityMt.vb</DependentUpon>

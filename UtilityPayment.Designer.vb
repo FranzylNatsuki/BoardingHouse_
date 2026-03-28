@@ -32,6 +32,7 @@ Partial Class frmUtilityPayment
         Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmUtilityPayment))
         Me.cal_paymentDate = New System.Windows.Forms.MonthCalendar()
         Me.txt_amount = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
@@ -372,6 +373,7 @@ Partial Class frmUtilityPayment
         Me.Controls.Add(Me.dgv_upay)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.dgv_boarder)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmUtilityPayment"
         Me.Text = "Utility Payment"
         GroupBox1.ResumeLayout(False)

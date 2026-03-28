@@ -308,7 +308,7 @@ Partial Class frmBoarderMt
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(1063, 30)
         Me.Label5.TabIndex = 10
-        Me.Label5.Text = "BOARDER MAINTANANCE"
+        Me.Label5.Text = "Boarder Maintanance"
         Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Label1
