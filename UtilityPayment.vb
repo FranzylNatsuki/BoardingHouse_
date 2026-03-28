@@ -223,7 +223,9 @@ Public Class frmUtilityPayment
         txt_upayID.Text = dgv_upay.CurrentRow.Cells(0).Value.ToString
         txt_utilityID.Text = dgv_upay.CurrentRow.Cells(1).Value.ToString
         txt_boarderID.Text = dgv_upay.CurrentRow.Cells(2).Value.ToString
-        cal_paymentDate.SetDate(Convert.ToDateTime(dgv_upay.CurrentRow.Cells(3).Value))
+        If Not IsDBNull(dgv_upay.CurrentRow.Cells(3).Value) Then
+            cal_paymentDate.SetDate(Convert.ToDateTime(dgv_upay.CurrentRow.Cells(3).Value))
+        End If
         txt_usage.Text = dgv_upay.CurrentRow.Cells(4).Value.ToString
         txt_amount.Text = dgv_upay.CurrentRow.Cells(5).Value.ToString
         'the row number/index of the tuple is taken note of (to be used when updating or deleting that tuple)
