@@ -150,6 +150,10 @@ Public Class frmBoarderMt
         Dim dt As DataTable = baseDS.Tables("boarder")
         'try to execute the following codes
         Try
+            Dim oldRoomID As String = ""
+            If dt.Rows(row)("RoomID") IsNot DBNull.Value Then
+                oldRoomID = dt.Rows(row)("RoomID").ToString()
+            End If
             'Using the row index of "row" from the dgvBorrower_MouseUp event, update the Tuple indicated by'"row" in the temporary table (dt) with data from the textboxes/combo box
             'The names in red and enclosed in double quotes are your attributes in phpMyAdmin
             'Take note of the spelling of your attributes because the name is case sensitive
@@ -162,11 +166,19 @@ Public Class frmBoarderMt
             dt.Rows(row)("RoomID") = cb_roomID.Text
             'save permanently in the department table (in your database)
             baseDA.Update(baseDS, "boarder")
+
+            If oldRoomID <> "" Then
+                UpdateRoomOccupancy(oldRoomID) ' decrease old room
+            End If
+
+            If cb_roomID.Text <> "" Then
+                UpdateRoomOccupancy(cb_roomID.Text) ' increase new room
+            End If
+
             'output an informative message to the user
             MsgBox("The changes in the record were successfully saved.", MsgBoxStyle.Information, "Boarder Maintanance")
             'Clear out the text boxes/combo box for new input/s
             clear()
-            UpdateRoomOccupancy(cb_roomID.Text)
             'set the cursor on the first textbox (borrower number)
             txt_boarderID.Focus()
             txt_boarderID.Enabled = True

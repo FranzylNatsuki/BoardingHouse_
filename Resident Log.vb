@@ -33,6 +33,7 @@ Public Class frmResident_Log
 
         ComboBoxContent()
         cb_boarder.SelectedIndex = -1
+        lbl_name.Text = "_"
 
         baseDS.Tables.Clear()
         baseDA = New MySqlDataAdapter()
@@ -80,6 +81,7 @@ Public Class frmResident_Log
         cb_boarder.SelectedIndex = -1
         cb_boarder.SelectedItem = Nothing
         cb_boarder.Text = ""
+        lbl_name.Text = "_"
     End Sub
 
     Private Sub btn_add_Click(sender As Object, e As EventArgs) Handles btn_add.Click
@@ -91,9 +93,9 @@ Public Class frmResident_Log
             newRow = baseDT.NewRow()
             newRow("RecordID") = txt_recordID.Text
             newRow("LogDate") = cal_logdate.SelectionStart.Date
-            newRow("TimeIn") = dtp_timein.Value
-            newRow("TimeOut") = dtp_timeout.Value
-            newRow("Remarks") = txt_remarks
+            newRow("TimeIn") = dtp_timein.Value.ToString("HH:mm:ss")
+            newRow("TimeOut") = dtp_timeout.Value.ToString("HH:mm:ss")
+            newRow("Remarks") = txt_remarks.Text
             newRow("BoarderID") = cb_boarder.Text
             'add the new record to the BORROWER table via the borrDataTable (virtual table)
             baseDT.Rows.Add(newRow)
@@ -119,12 +121,12 @@ Public Class frmResident_Log
             'Take note of the spelling of your attributes because the name is case sensitive
             dt.Rows(row)("RecordID") = txt_recordID.Text
             dt.Rows(row)("LogDate") = cal_logdate.SelectionStart.Date
-            dt.Rows(row)("TimeIn") = dtp_timein.Value
-            dt.Rows(row)("TimeOut") = dtp_timeout.Value
-            dt.Rows(row)("Remarks") = txt_remarks
+            dt.Rows(row)("TimeIn") = dtp_timein.Value.ToString("HH:mm:ss")
+            dt.Rows(row)("TimeOut") = dtp_timeout.Value.ToString("HH:mm:ss")
+            dt.Rows(row)("Remarks") = txt_remarks.Text
             dt.Rows(row)("BoarderID") = cb_boarder.Text
             'save permanently in the department table (in your database)
-            baseDA.Update(baseDS, "facility")
+            baseDA.Update(baseDS, "resident_log")
             'output an informative message to the user
             MsgBox("The changes in the record were successfully saved.", MsgBoxStyle.Information, "Resident Log")
             'Clear out the text boxes/combo box for new input/s
@@ -183,6 +185,7 @@ Public Class frmResident_Log
     End Sub
 
     Private Sub btn_Clear_Click(sender As Object, e As EventArgs) Handles btn_Clear.Click
+        lbl_name.Text = "_"
         clear()
     End Sub
 
@@ -213,7 +216,11 @@ Public Class frmResident_Log
     Private Sub dgv_log_MouseUp(sender As Object, e As MouseEventArgs) Handles dgv_log.MouseUp
         'transfer the content of the row that was clicked on the datagridview control to the textboxes
         txt_recordID.Text = dgv_log.CurrentRow.Cells(0).Value.ToString
-        cal_logdate.SetDate(Convert.ToDateTime(dgv_log.CurrentRow.Cells(1).Value))
+        If dgv_log.CurrentRow.Cells(1).Value IsNot DBNull.Value Then
+            cal_logdate.SetDate(Convert.ToDateTime(dgv_log.CurrentRow.Cells(1).Value))
+        Else
+            cal_logdate.SetDate(DateTime.Today)
+        End If
         Dim timeIn As TimeSpan = CType(dgv_log.CurrentRow.Cells(2).Value, TimeSpan)
         dtp_timein.Value = DateTime.Today.Add(timeIn)
         Dim timeOut As TimeSpan = CType(dgv_log.CurrentRow.Cells(3).Value, TimeSpan)

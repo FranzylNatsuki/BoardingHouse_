@@ -210,7 +210,11 @@ Public Class frmRentPayment
         'transfer the content of the row that was clicked on the datagridview control to the textboxes
         txt_transID.Text = dgv_rentPay.CurrentRow.Cells(0).Value.ToString
         txt_amountrent.Text = dgv_rentPay.CurrentRow.Cells(1).Value.ToString
-        dtp_billingPeriod.Value = Convert.ToDateTime(dgv_rentPay.CurrentRow.Cells(2).Value)
+        If dgv_rentPay.CurrentRow.Cells(2).Value IsNot DBNull.Value Then
+            dtp_billingPeriod.Value = Convert.ToDateTime(dgv_rentPay.CurrentRow.Cells(2).Value)
+        Else
+            dtp_billingPeriod.Value = DateTime.Today
+        End If
         txt_receiptNo.Text = dgv_rentPay.CurrentRow.Cells(3).Value.ToString
         cb_payMethod.SelectedItem = dgv_rentPay.CurrentRow.Cells(4).Value.ToString
         cal_paymentDate.SetDate(Convert.ToDateTime(dgv_rentPay.CurrentRow.Cells(5).Value))
