@@ -35,6 +35,9 @@ Public Class frmTermination
         Try
             'Open the connection to the database
             MyConnection.Open()
+
+            boarderDS.Clear()
+            termDS.Clear()
             'Create a new SQL command based on the SQL query above and place in or assign to the data adapter
             boarderDA.SelectCommand = New MySqlCommand(boarderSQLQuery, MyConnection)
             termDA.SelectCommand = New MySqlCommand(termSQLQuery, MyConnection)
