@@ -85,7 +85,7 @@ Public Class frmTermination
             newRow("Deposit") = txt_deposit.Text
             newRow("Deductions") = txt_deductions.Text
             newRow("Cleared") = c_cleared.Checked
-            newRow("Remarks") = txt_remarks
+            newRow("Remarks") = txt_remarks.Text
             newRow("RT_BoarderID") = txt_rtBoarder.Text
             'add the new record to the BORROWER table via the borrDataTable (virtual table)
             DataTable.Rows.Add(newRow)
@@ -111,7 +111,7 @@ Public Class frmTermination
             dt.Rows(row)("Deposit") = txt_deposit.Text
             dt.Rows(row)("Deductions") = txt_deductions.Text
             dt.Rows(row)("Cleared") = c_cleared.Checked
-            dt.Rows(row)("Remarks") = txt_remarks
+            dt.Rows(row)("Remarks") = txt_remarks.Text
             dt.Rows(row)("RT_BoarderID") = txt_rtBoarder.Text
             'save permanently in the department table (in your database)
             termDA.Update(termDS, "rent_termination")
