@@ -22,6 +22,19 @@ Public Class frmRoomMt
     'We will use this later in the update and delete modules
     Dim row As Integer
     Private Sub btn_add_Click(sender As Object, e As EventArgs) Handles btn_add.Click
+        If txt_roomID.Text.Trim() = "" Then
+            MsgBox("Key/s cannot be empty.", MsgBoxStyle.Exclamation, "Validation Error")
+            clear()
+            Exit Sub
+        End If
+
+        If Not IsNumeric(txt_roomID.Text) Then
+            MsgBox("Key/s must be a numeric value.", MsgBoxStyle.Critical, "Invalid Input")
+            txt_roomID.Focus()
+            clear()
+            Exit Sub
+        End If
+
         Dim baseDT As DataTable = baseDS.Tables("room")
         Dim newRow As DataRow
         Try
@@ -100,6 +113,18 @@ Public Class frmRoomMt
     End Function
 
     Private Sub btn_update_Click(sender As Object, e As EventArgs) Handles btn_update.Click
+        If txt_roomID.Text.Trim() = "" Then
+            MsgBox("Key/s cannot be empty.", MsgBoxStyle.Exclamation, "Validation Error")
+            clear()
+            Exit Sub
+        End If
+
+        If Not IsNumeric(txt_roomID.Text) Then
+            MsgBox("Key/s must be a numeric value.", MsgBoxStyle.Critical, "Invalid Input")
+            txt_roomID.Focus()
+            clear()
+            Exit Sub
+        End If
         'Declare dt as a temporary holder/table for the BORROWER table
         'Take note that we used the variable borrDataTable in the “Add Records” module
         Dim dt As DataTable = baseDS.Tables("room")

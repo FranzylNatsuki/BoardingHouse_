@@ -72,6 +72,18 @@ Public Class frmTermination
     End Sub
 
     Private Sub btn_add_Click(sender As Object, e As EventArgs) Handles btn_add.Click
+        If txt_termID.Text.Trim() = "" Or txt_rtBoarder.Text.Trim() = "" Then
+            MsgBox("Key/s cannot be empty.", MsgBoxStyle.Exclamation, "Validation Error")
+            clear()
+            Exit Sub
+        End If
+
+        If Not IsNumeric(txt_termID.Text) Then
+            MsgBox("Key/s must be a numeric value.", MsgBoxStyle.Critical, "Invalid Input")
+            clear()
+            txt_termID.Focus()
+            Exit Sub
+        End If
         'declare a data table variable (borrDataTable) that will serve as a virtual table
         'where the tuples of the BORROWER table will be loaded
         Dim DataTable As DataTable = termDS.Tables("rent_termination")
@@ -98,6 +110,18 @@ Public Class frmTermination
     End Sub
 
     Private Sub btn_update_Click(sender As Object, e As EventArgs) Handles btn_update.Click
+        If txt_termID.Text.Trim() = "" Or txt_rtBoarder.Text.Trim() = "" Then
+            MsgBox("Key/s cannot be empty.", MsgBoxStyle.Exclamation, "Validation Error")
+            clear()
+            Exit Sub
+        End If
+
+        If Not IsNumeric(txt_termID.Text) Then
+            MsgBox("Key/s must be a numeric value.", MsgBoxStyle.Critical, "Invalid Input")
+            clear()
+            txt_termID.Focus()
+            Exit Sub
+        End If
         'Declare dt as a temporary holder/table for the BORROWER table
         'Take note that we used the variable borrDataTable in the “Add Records” module
         Dim dt As DataTable = termDS.Tables("rent_termination")

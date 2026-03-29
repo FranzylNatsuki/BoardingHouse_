@@ -85,6 +85,20 @@ Public Class frmResident_Log
     End Sub
 
     Private Sub btn_add_Click(sender As Object, e As EventArgs) Handles btn_add.Click
+        If txt_recordID.Text.Trim() = "" Or cb_boarder.Text.Trim() = "" Then
+            MsgBox("Key/s cannot be empty.", MsgBoxStyle.Exclamation, "Validation Error")
+            clear()
+            Exit Sub
+        End If
+
+        If Not IsNumeric(txt_recordID.Text) Then
+            MsgBox("Key/s must be a numeric value.", MsgBoxStyle.Critical, "Invalid Input")
+            txt_recordID.Focus()
+            clear()
+            Exit Sub
+        End If
+
+
         Dim baseDT As DataTable = baseDS.Tables("resident_log")
         Dim newRow As DataRow
         Try
@@ -111,6 +125,19 @@ Public Class frmResident_Log
     End Sub
 
     Private Sub btn_update_Click(sender As Object, e As EventArgs) Handles btn_update.Click
+        If txt_recordID.Text.Trim() = "" Or cb_boarder.Text.Trim() = "" Then
+            MsgBox("Key/s cannot be empty.", MsgBoxStyle.Exclamation, "Validation Error")
+            clear()
+            Exit Sub
+        End If
+
+        If Not IsNumeric(txt_recordID.Text) Then
+            MsgBox("Key/s must be a numeric value.", MsgBoxStyle.Critical, "Invalid Input")
+            txt_recordID.Focus()
+            clear()
+            Exit Sub
+        End If
+
         'Declare dt as a temporary holder/table for the BORROWER table
         'Take note that we used the variable borrDataTable in the “Add Records” module
         Dim dt As DataTable = baseDS.Tables("resident_log")
