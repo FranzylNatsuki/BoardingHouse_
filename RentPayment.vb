@@ -217,8 +217,12 @@ Public Class frmRentPayment
         End If
         txt_receiptNo.Text = dgv_rentPay.CurrentRow.Cells(3).Value.ToString
         cb_payMethod.SelectedItem = dgv_rentPay.CurrentRow.Cells(4).Value.ToString
-        cal_paymentDate.SetDate(Convert.ToDateTime(dgv_rentPay.CurrentRow.Cells(5).Value))
-        txt_rpBoarder.Text = dgv_boarder.CurrentRow.Cells(6).Value.ToString
+        If dgv_rentPay.CurrentRow.Cells(5).Value IsNot DBNull.Value Then
+            cal_paymentDate.SetDate(Convert.ToDateTime(dgv_rentPay.CurrentRow.Cells(5).Value))
+        Else
+            cal_paymentDate.SetDate(DateTime.Today)
+        End If
+        txt_rpBoarder.Text = dgv_boarder.CurrentRow.Cells(0).Value.ToString
         'the row number/index of the tuple is taken note of (to be used when updating or deleting that tuple)
         'this was previously declared in the Public Class frmBorrower
         row = dgv_rentPay.CurrentRow.Index
