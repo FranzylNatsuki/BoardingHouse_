@@ -42,7 +42,7 @@ Public Class frmRentPayment
             newRow = DataTable.NewRow()
             newRow("TransactionID") = txt_transID.Text
             newRow("AmountPaid") = txt_amountrent.Text
-            newRow("BillingPeriod") = dtp_billingPeriod.Value
+            newRow("BillingPeriod") = dtp_billingPeriod.Value.Date
             newRow("ReceiptNo") = txt_receiptNo.Text
             newRow("PayMethod") = cb_payMethod.Text
             newRow("PaymentDate") = cal_paymentDate.SelectionStart.Date
@@ -52,6 +52,7 @@ Public Class frmRentPayment
             'update the borrower table with the inserted new record
             paymentDA.Update(paymentDS, "rental_payment")
             MsgBox("The record was successfully saved.", MsgBoxStyle.Information, "Rental Payment")
+            clear()
         Catch ex As MySqlException
             MsgBox(ex.ToString)
         End Try
@@ -80,7 +81,7 @@ Public Class frmRentPayment
             'Take note of the spelling of your attributes because the name is case sensitive
             dt.Rows(row)("TransactionID") = txt_transID.Text
             dt.Rows(row)("AmountPaid") = txt_amountrent.Text
-            dt.Rows(row)("BillingPeriod") = dtp_billingPeriod.Value
+            dt.Rows(row)("BillingPeriod") = dtp_billingPeriod.Value.Date
             dt.Rows(row)("ReceiptNo") = txt_receiptNo.Text
             dt.Rows(row)("PayMethod") = cb_payMethod.Text
             dt.Rows(row)("PaymentDate") = cal_paymentDate.SelectionStart.Date
@@ -165,9 +166,15 @@ Public Class frmRentPayment
         'btn_update.Enabled = False
         'btn_delete.Enabled = False
 
+        dtp_billingPeriod.Format = DateTimePickerFormat.Custom
+        dtp_billingPeriod.CustomFormat = "yyyy-MM"
+
         Try
             'Open the connection to the database
             MyConnection.Open()
+
+            boarderDS.Clear()
+            paymentDS.Clear()
             'Create a new SQL command based on the SQL query above and place in or assign to the data adapter
             boarderDA.SelectCommand = New MySqlCommand(boarderSQLQuery, MyConnection)
             paymentDA.SelectCommand = New MySqlCommand(paymentSQLQuery, MyConnection)
@@ -226,7 +233,6 @@ Public Class frmRentPayment
         'transfer the content of the row that was clicked on the datagridview control to the textboxes
         txt_rpBoarder.Text = dgv_boarder.CurrentRow.Cells(0).Value.ToString
         'the row number/index of the tuple is taken note of (to be used when updating or deleting that tuple)
-        row = dgv_boarder.CurrentRow.Index
         txt_rpBoarder.Enabled = False
     End Sub
 
@@ -246,7 +252,7 @@ Public Class frmRentPayment
         Else
             cal_paymentDate.SetDate(DateTime.Today)
         End If
-        txt_rpBoarder.Text = dgv_boarder.CurrentRow.Cells(0).Value.ToString
+        txt_rpBoarder.Text = dgv_rentPay.CurrentRow.Cells(0).Value.ToString
         'the row number/index of the tuple is taken note of (to be used when updating or deleting that tuple)
         'this was previously declared in the Public Class frmBorrower
         row = dgv_rentPay.CurrentRow.Index

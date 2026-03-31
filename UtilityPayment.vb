@@ -21,7 +21,9 @@ Public Class frmUtilityPayment
     Dim utilitySQLQuery As String
     Dim paymentSQLQuery As String
     'We will use this later in the update and delete modules
-    Dim row As Integer
+    Dim rowb As Integer
+    Dim rowu As Integer
+    Dim rowup As Integer
     Private Sub btn_add_Click(sender As Object, e As EventArgs) Handles btn_add.Click
         If txt_upayID.Text.Trim() = "" Or txt_utilityID.Text.Trim() = "" Or txt_boarderID.Text.Trim() = "" Then
             MsgBox("Key/s cannot be empty.", MsgBoxStyle.Exclamation, "Validation Error")
@@ -55,6 +57,7 @@ Public Class frmUtilityPayment
             'update the borrower table with the inserted new record
             paymentDA.Update(paymentDS, "utility_payment")
             MsgBox("The record was successfully saved.", MsgBoxStyle.Information, "Utility Payment")
+            clear()
         Catch ex As MySqlException
             MsgBox(ex.ToString)
         End Try
@@ -89,12 +92,12 @@ Public Class frmUtilityPayment
             'Using the row index of "row" from the dgvBorrower_MouseUp event, update the Tuple indicated by'"row" in the temporary table (dt) with data from the textboxes/combo box
             'The names in red and enclosed in double quotes are your attributes in phpMyAdmin
             'Take note of the spelling of your attributes because the name is case sensitive
-            dt.Rows(row)("UtilityPayID") = txt_upayID.Text
-            dt.Rows(row)("UtilityID") = txt_utilityID.Text
-            dt.Rows(row)("UP_BoarderID") = txt_boarderID.Text
-            dt.Rows(row)("PaymentDate") = cal_paymentDate.SelectionStart.Date
-            dt.Rows(row)("Usage_") = txt_usage.Text
-            dt.Rows(row)("AmountToPay") = txt_amount.Text
+            dt.Rows(rowup)("UtilityPayID") = txt_upayID.Text
+            dt.Rows(rowup)("UtilityID") = txt_utilityID.Text
+            dt.Rows(rowup)("UP_BoarderID") = txt_boarderID.Text
+            dt.Rows(rowup)("PaymentDate") = cal_paymentDate.SelectionStart.Date
+            dt.Rows(rowup)("Usage_") = txt_usage.Text
+            dt.Rows(rowup)("AmountToPay") = txt_amount.Text
             'save permanently in the department table (in your database)
             paymentDA.Update(paymentDS, "utility_payment")
             'output an informative message to the user
@@ -111,7 +114,7 @@ Public Class frmUtilityPayment
             btn_update.Enabled = False
             'if an error occurs, output an error message to the user ("catch" the error)
         Catch ex As MySqlException
-            MsgBox(ex.ToString)
+            MsgBox("ERROR: " & ex.Message & vbCrLf & "CODE: " & ex.Number)
         End Try
     End Sub
 
@@ -124,7 +127,7 @@ Public Class frmUtilityPayment
         If (answer = MsgBoxResult.Yes) Then
             Try
                 'delete the record that is indicated by the "row" which was taken note of in dgvBorrower_MouseUp
-                dt.Rows(row).Delete()
+                dt.Rows(rowup).Delete()
                 'update the employee table with one less tuple
                 paymentDA.Update(paymentDS, "utility_payment")
                 'output an informational message to the user
@@ -232,14 +235,14 @@ Public Class frmUtilityPayment
         'transfer the content of the row that was clicked on the datagridview control to the textboxes
         txt_boarderID.Text = dgv_boarder.CurrentRow.Cells(0).Value.ToString
         'the row number/index of the tuple is taken note of (to be used when updating or deleting that tuple)
-        row = dgv_boarder.CurrentRow.Index
+        rowb = dgv_boarder.CurrentRow.Index
         txt_boarderID.Enabled = False
     End Sub
 
     Private Sub dgv_utility_MouseUp(sender As Object, e As MouseEventArgs) Handles dgv_utility.MouseUp
         txt_utilityID.Text = dgv_utility.CurrentRow.Cells(0).Value.ToString
         'the row number/index of the tuple is taken note of (to be used when updating or deleting that tuple)
-        row = dgv_utility.CurrentRow.Index
+        rowu = dgv_utility.CurrentRow.Index
         txt_utilityID.Enabled = False
     End Sub
 
@@ -255,7 +258,7 @@ Public Class frmUtilityPayment
         txt_amount.Text = dgv_upay.CurrentRow.Cells(5).Value.ToString
         'the row number/index of the tuple is taken note of (to be used when updating or deleting that tuple)
         'this was previously declared in the Public Class frmBorrower
-        row = dgv_upay.CurrentRow.Index
+        rowup = dgv_upay.CurrentRow.Index
         'the Add button is disabled and the Update and Delete buttons are enabled
         'the record that was chosen can either be edited or deleted (not added as a new record)
         btn_add.Enabled = False

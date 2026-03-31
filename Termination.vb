@@ -104,6 +104,7 @@ Public Class frmTermination
             'update the borrower table with the inserted new record
             termDA.Update(termDS, "rent_termination")
             MsgBox("The record was successfully saved.", MsgBoxStyle.Information, "Rental Termination")
+            clear()
         Catch ex As MySqlException
             MsgBox(ex.ToString)
         End Try
@@ -227,14 +228,17 @@ Public Class frmTermination
         'transfer the content of the row that was clicked on the datagridview control to the textboxes
         txt_rtBoarder.Text = dgv_boarder.CurrentRow.Cells(0).Value.ToString
         'the row number/index of the tuple is taken note of (to be used when updating or deleting that tuple)
-        row = dgv_boarder.CurrentRow.Index
         txt_rtBoarder.Enabled = False
     End Sub
 
     Private Sub dgv_rentTerm_MouseUp(sender As Object, e As MouseEventArgs) Handles dgv_rentTerm.MouseUp
         'transfer the content of the row that was clicked on the datagridview control to the textboxes
         txt_termID.Text = dgv_rentTerm.CurrentRow.Cells(0).Value.ToString
-        cal_termDate.SetDate(Convert.ToDateTime(dgv_rentTerm.CurrentRow.Cells(1).Value))
+        If Not IsDBNull(dgv_rentTerm.CurrentRow.Cells(1).Value) Then
+            cal_termDate.SetDate(Convert.ToDateTime(dgv_rentTerm.CurrentRow.Cells(1).Value))
+        Else
+            cal_termDate.SetDate(DateTime.Today)
+        End If
         txt_deposit.Text = dgv_rentTerm.CurrentRow.Cells(2).Value.ToString
         txt_deductions.Text = dgv_rentTerm.CurrentRow.Cells(3).Value.ToString
         c_cleared.Checked = Convert.ToBoolean(dgv_rentTerm.CurrentRow.Cells(4).Value)
