@@ -195,6 +195,7 @@ Public Class frmRentPayment
 
             dgv_rentPay.DataSource = paymentDS
             dgv_rentPay.DataMember = "rental_payment"
+            dgv_rentPay.Columns("BillingPeriod").DefaultCellStyle.Format = "yyyy-MM"
             dgv_rentPay.AutoResizeColumns()
             'set the headers of the columns
             'modify this based on the number of attributes you have in the BORROWER table; attribute 1 starts at column 0

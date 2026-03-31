@@ -241,7 +241,12 @@ Public Class frmTermination
         End If
         txt_deposit.Text = dgv_rentTerm.CurrentRow.Cells(2).Value.ToString
         txt_deductions.Text = dgv_rentTerm.CurrentRow.Cells(3).Value.ToString
-        c_cleared.Checked = Convert.ToBoolean(dgv_rentTerm.CurrentRow.Cells(4).Value)
+        Dim val = dgv_rentTerm.CurrentRow.Cells(4).Value
+        If val IsNot Nothing AndAlso val IsNot DBNull.Value Then
+            c_cleared.Checked = Convert.ToBoolean(val)
+        Else
+            c_cleared.Checked = False
+        End If
         txt_remarks.Text = dgv_rentTerm.CurrentRow.Cells(5).Value.ToString
         txt_rtBoarder.Text = dgv_rentTerm.CurrentRow.Cells(6).Value.ToString
 
